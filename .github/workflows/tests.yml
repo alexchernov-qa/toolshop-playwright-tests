@@ -15,8 +15,7 @@ jobs:
           node-version: lts/*
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npx playwright test
+      - run: npx playwright test --project=api
         env:
           APP_EMAIL: ${{secrets.APP_EMAIL}}
           APP_PASSWORD: ${{secrets.APP_PASSWORD}}

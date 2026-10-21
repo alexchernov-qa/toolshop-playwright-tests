@@ -76,12 +76,15 @@ npm test
 
 ## CI
 
-Workflow `.github/workflows/tests.yml` запускает тесты при каждом `push` и `pull_request` в `main` на чистой машине, а HTML-отчёт сохраняет как артефакт.
+Workflow `.github/workflows/tests.yml` запускает **API-тесты** (проект `api`) при каждом `push` и `pull_request` в `main` на чистой машине, а HTML-отчёт сохраняет как артефакт.
+
+UI-тесты в CI не запускаются: публичный стенд Toolshop отвечает серверам GitHub проверкой Cloudflare («security verification») вместо страницы входа, поэтому UI-тесты запускаются локально (`npm test`). В планах: поднимать Toolshop прямо в CI через Docker Compose и гонять UI-тесты на нём.
 
 Для запуска в своём форке нужно добавить два секрета репозитория: `APP_EMAIL` и `APP_PASSWORD`.
 
 ## Планы
 
+- UI-тесты в CI на локально поднятом Toolshop (Docker Compose)
 - Allure-отчёт и публикация на GitHub Pages
 - Генерация тестовых данных
 - Моки сетевых запросов (`page.route`)
