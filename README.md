@@ -1,8 +1,6 @@
 # Toolshop Test Automation: Playwright + TypeScript
 
-<!-- TODO: после публикации замени ТВОЙ_ЛОГИН и ИМЯ_РЕПО и раскомментируй бейдж CI:
-[![Tests](https://github.com/ТВОЙ_ЛОГИН/ИМЯ_РЕПО/actions/workflows/tests.yml/badge.svg)](https://github.com/ТВОЙ_ЛОГИН/ИМЯ_РЕПО/actions/workflows/tests.yml)
--->
+[![Tests](https://github.com/alexchernov-qa/toolshop-playwright-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/alexchernov-qa/toolshop-playwright-tests/actions/workflows/tests.yml)
 
 Фреймворк автотестов для демо-магазина [Toolshop](https://practicesoftwaretesting.com): UI-тесты (каталог, поиск, вход) и API-тесты (каталог, авторизация) на **Playwright** и **TypeScript**.
 
