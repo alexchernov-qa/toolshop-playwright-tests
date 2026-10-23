@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     trace: 'on-first-retry',
-    baseURL: 'https://practicesoftwaretesting.com',
+    baseURL: process.env.BASE_URL ?? 'https://practicesoftwaretesting.com',
     testIdAttribute: 'data-test',
   },
   projects: [
@@ -18,7 +18,7 @@ export default defineConfig({
   {
     name: 'api', 
     testMatch: /.*\.api\.spec\.ts/,
-    use: { baseURL: 'https://api.practicesoftwaretesting.com' }
+    use: { baseURL: process.env.API_URL ?? 'https://api.practicesoftwaretesting.com' }
   },
   {
     name: 'chromium',
