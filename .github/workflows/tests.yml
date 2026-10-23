@@ -15,7 +15,26 @@ jobs:
           node-version: lts/*
           cache: npm
       - run: npm ci
-      - run: npx playwright test --project=api
+      - run: npx playwright install --with-deps chromium
+      - name: Start Toolshop stand
+        run: |
+          curl -sO https://raw.githubusercontent.com/testsmith-io/practice-software-testing/main/docker-compose.prod.yml
+          printf 'SPRINT=sprint5\nDISABLE_LOGGING=true\n' > .env
+          docker compose -f docker-compose.prod.yml up -d
+      - name: Wait for API and seed the database
+        run: |
+          for i in $(seq 1 30); do
+            docker compose -f docker-compose.prod.yml exec -T laravel-api php artisan migrate:refresh --seed --force && break
+            sleep 5
+          done
+      - name: Wait for UI
+        run: |
+          for i in $(seq 1 60); do
+            curl -sf http://localhost:4200 > /dev/null && exit 0
+            sleep 5
+          done
+          echo "UI did not start" && exit 1
+      - run: npm run test:local
         env:
           APP_EMAIL: ${{secrets.APP_EMAIL}}
           APP_PASSWORD: ${{secrets.APP_PASSWORD}}
